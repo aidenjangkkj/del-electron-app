@@ -52,7 +52,8 @@
     "cpy-cli": "^5.0.0",
     "electron": "^21.3.3",
     "electron-builder": "^23.6.0",
-    "wait-on": "^6.0.1"
+    "wait-on": "^6.0.1",
+    "axios" : " >=1.8.2 " 
   },
   "browserslist": {
     "production": [

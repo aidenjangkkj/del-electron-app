@@ -3,8 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBF3MnSIBJxIGNl5F2PmdOJMxoffKG6bCQ",
-  projectId: "food-del-6b5bf",
   // 기타 설정 값...
 };
 
