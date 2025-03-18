@@ -35,7 +35,7 @@ const UserManager = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 font-sans">
-        <p className="text-xl text-gray-600">Loading...</p>
+        <p className="text-xl text-gray-600">로딩중</p>
       </div>
     );
   }
@@ -43,14 +43,14 @@ const UserManager = () => {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 font-sans">
-        <p className="text-xl text-red-600">Error loading users: {error.message}</p>
+        <p className="text-xl text-red-600">고객 로딩 에러: {error.message}</p>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 font-sans">
-      <h1 className="text-2xl font-bold mb-4 text-center">User Manager</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">고객 관리</h1>
       
       {editingUser ? (
         // 수정 중인 사용자가 있을 경우, User 컴포넌트 렌더링

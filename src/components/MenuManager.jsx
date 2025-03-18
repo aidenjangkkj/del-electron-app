@@ -19,6 +19,8 @@ function MenuManager() {
     description: "",
   });
   const [editingItem, setEditingItem] = useState(null);
+  // 선택된 카테고리 필터 상태 (빈 문자열이면 전체 표시)
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   // 실시간으로 메뉴 데이터를 불러오기
   useEffect(() => {
@@ -89,6 +91,11 @@ function MenuManager() {
     { value: "사이드", label: "사이드" },
     { value: "음료", label: "음료" },
   ];
+
+  // 선택된 카테고리에 따라 메뉴 필터링 (빈 문자열이면 전체)
+  const filteredMenuItems = selectedCategory
+    ? menuItems.filter((item) => item.category === selectedCategory)
+    : menuItems;
 
   return (
     <div className="p-4">
@@ -209,11 +216,31 @@ function MenuManager() {
         </div>
       )}
 
+      {/* 메뉴 리스트 필터링 드롭다운 */}
+      <div className="mb-4 flex items-center gap-2">
+        <label htmlFor="category-filter" className="font-medium">
+          카테고리별 분류:
+        </label>
+        <select
+          id="category-filter"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="">전체</option>
+          {categoryOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* 메뉴 리스트 */}
       <div className="mt-4">
         <h2 className="text-xl font-bold mb-2">메뉴 리스트</h2>
         <ul>
-          {menuItems.map((item) => (
+          {filteredMenuItems.map((item) => (
             <li
               key={item.id}
               className="border p-4 mb-2 rounded flex justify-between items-center bg-white"

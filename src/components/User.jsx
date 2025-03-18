@@ -7,7 +7,6 @@ const User = ({ user, onUpdate, onCancel }) => {
   // 편집용 로컬 상태
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || "");
   const [points, setPoints] = useState(user.points || 0);
-  const [orderCount, setOrderCount] = useState(user.orderCount || 0);
 
   const handleSave = async () => {
     try {

@@ -5,6 +5,7 @@ import OrderListWindow from "./components/OrderListWindow";
 import { db } from "./firebaseConfig";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import UserManager from "./components/UserManager";
+import CompletedOrder from "./components/CompletedOrder";
 
 function App() {
   const [currentView, setCurrentView] = useState("order");
@@ -56,6 +57,7 @@ function App() {
         {currentView === "menu" && <MenuManager />}
         {currentView === "order" && <OrderListWindow orders={orders} />}
         {currentView === "user" && <UserManager />}
+        {currentView === "completed" && <CompletedOrder />}
       </div>
     </div>
   );

@@ -1,21 +1,14 @@
-// src/OrderListWindow.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OrderList from "./OrderList";
 
-// 오늘 날짜(YYYY-MM-DD 형식) 구하기
 const getTodayDateString = () => {
   return new Date().toISOString().split("T")[0];
 };
 
 const OrderListWindow = ({ orders }) => {
-  // 기본값을 오늘 날짜로 설정
   const [selectedDate, setSelectedDate] = useState(getTodayDateString());
-
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
-  };
-
-  // 선택한 날짜에 해당하는 주문만 필터링
+  
+  // 주문 목록 필터링
   const filteredOrders = selectedDate
     ? orders.filter((order) => {
         if (order.createdAt && order.createdAt.toDate) {
@@ -25,12 +18,24 @@ const OrderListWindow = ({ orders }) => {
         return false;
       })
     : orders;
+  
+  // filteredOrders가 변경될 때마다 사운드 재생
+  useEffect(() => {
+    if (filteredOrders.length > 0) {
+      const audio = new Audio("../../public/sound.wav");
+      audio.play().catch((error) => {
+        console.error("사운드 재생 실패:", error);
+      });
+    }
+  }, [filteredOrders]);
+  
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 font-sans">
       <h1 className="text-2xl font-bold mb-4">주문 내역 (실시간 업데이트)</h1>
-      
-      {/* 날짜 선택 입력 */}
       <div className="mb-4 flex items-center">
         <label htmlFor="date-picker" className="mr-2 font-medium">
           날짜 선택:
@@ -51,8 +56,6 @@ const OrderListWindow = ({ orders }) => {
           </button>
         )}
       </div>
-
-      {/* 날짜별 주문 내역 리스트 */}
       <OrderList orders={filteredOrders} />
     </div>
   );
