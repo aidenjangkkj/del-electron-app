@@ -34,7 +34,6 @@ Electron을 통해 크로스 플랫폼 데스크탑 환경에서 실행되며, R
 - **React**: 사용자 인터페이스 구성 (react-scripts 활용)
 - **Firebase**: 백엔드 서비스 연동
 - **electron-builder**: 앱 패키징 및 배포 도구
-- **Concurrently, wait-on**: 개발 환경에서 여러 프로세스 동시 실행
 
 ## 설치 및 실행 방법
 
